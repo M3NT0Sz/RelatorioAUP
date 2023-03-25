@@ -90,6 +90,18 @@
     <Compile Include="FRNManutAlunos.Designer.cs">
       <DependentUpon>FRNManutAlunos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FRNManutProfessor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRNManutProfessor.Designer.cs">
+      <DependentUpon>FRNManutProfessor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRNManutUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRNManutUsuarios.Designer.cs">
+      <DependentUpon>FRNManutUsuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="FRNPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +136,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FRNManutAlunos.resx">
       <DependentUpon>FRNManutAlunos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRNManutProfessor.resx">
+      <DependentUpon>FRNManutProfessor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRNManutUsuarios.resx">
+      <DependentUpon>FRNManutUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FRNPrincipal.resx">
       <DependentUpon>FRNPrincipal.cs</DependentUpon>

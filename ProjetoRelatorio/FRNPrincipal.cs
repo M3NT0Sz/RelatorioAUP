@@ -58,5 +58,17 @@ namespace ProjetoRelatorio
             FRNManutAlunos cadastrar = new FRNManutAlunos(cnsql);
             cadastrar.ShowDialog();
         }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FRNManutUsuarios cadastrar = new FRNManutUsuarios(cnsql);
+            cadastrar.ShowDialog();
+        }
+
+        private void professoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FRNManutProfessor cadastrar = new FRNManutProfessor(cnsql);
+            cadastrar.ShowDialog();
+        }
     }
 }

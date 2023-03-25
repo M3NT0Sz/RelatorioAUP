@@ -11,39 +11,20 @@ using MySql.Data.MySqlClient;
 
 namespace ProjetoRelatorio
 {
-    public partial class FRNManutAlunos : Form
+    public partial class FRNManutProfessor : Form
     {
         string cnsql = "";
-        public FRNManutAlunos(string cn)
+        public FRNManutProfessor(string cn)
         {
             InitializeComponent();
             cnsql = cn;
-        }
-
-        private void verificacadastroigual()
-        {
-            string sql = "select * from alunos where cpf=@cpf";//envniando uma instrução em sql para o banco
-            MySqlConnection conexao = new MySqlConnection(cnsql);//enviando o caminho onde está alocado o banco
-            MySqlCommand comando = new MySqlCommand(sql, conexao);//enviando o caminho e a instrução em sql para o banco
-            comando.Parameters.Add("@cpf", MySqlDbType.VarChar).Value = textBox3.Text;
-
-            conexao.Open();//abrindo conexão
-
-            MySqlDataReader leia = comando.ExecuteReader();//enviando uma variavel que irá realizar uma leitura dos dados
-
-            if (leia.HasRows)//encontrou alguma coisa?
-            {
-                MessageBox.Show("CPF já existe: " + textBox3.Text + ", Por favor, Verifique o CPF", "Ajuda do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox3.Clear();//limpando
-            }
-            conexao.Close();
         }
 
         //função CONSULTAR
         private void consultar()
         {
             dataGridView1.Rows.Clear();//limpando os dados do grid
-            string sql = "select * from alunos ORDER BY NOME";//enviando uma instrução em sql para o banco
+            string sql = "select * from professor ORDER BY NOME";//enviando uma instrução em sql para o banco
             MySqlConnection conexao = new MySqlConnection(cnsql);//enviando o caminho onde está alocado o banco
             MySqlCommand comando = new MySqlCommand(sql, conexao);//enviando o caminho e a instrução em sql para o banco
             conexao.Open();//abrindo conexão
@@ -55,7 +36,8 @@ namespace ProjetoRelatorio
                 while (leia.Read())//enquanto o leia estiver encontrando dados ele vai exibir as informações no grid, registro por registro
                 {
                     dataGridView1.Rows.Add(Convert.ToString(leia["codigo"]), Convert.ToString(leia["nome"]),
-                    Convert.ToString(leia["cpf"]), Convert.ToString(leia["rg"]), Convert.ToString(leia["dn"]));
+                    Convert.ToString(leia["formacao"]), Convert.ToString(leia["endereco"]), Convert.ToString(leia["cep"]), Convert.ToString(leia["cidade"]),
+                    Convert.ToString(leia["senha"]), Convert.ToString(leia["datanasc"]));
                 }
             }
             else
@@ -67,15 +49,18 @@ namespace ProjetoRelatorio
 
         private void inserir()
         {
-            string sql = "insert into alunos (nome,cpf,rg,dn) values (@nome,@cpf,@rg,@dn)";
+            string sql = "insert into professor (nome,datanasc,formacao,endereco,cep,cidade,senha) values (@nome,@datanasc,@formacao,@endereco,@cep,@cidade,@senha)";
             //enviando uma instrução em sql para a variavel com nome de sql
 
             MySqlConnection conexao = new MySqlConnection(cnsql);
             MySqlCommand comando = new MySqlCommand(sql, conexao);
             comando.Parameters.Add("@nome", MySqlDbType.VarChar).Value = textBox1.Text;
-            comando.Parameters.Add("@cpf", MySqlDbType.VarChar).Value = textBox2.Text;
-            comando.Parameters.Add("@rg", MySqlDbType.VarChar).Value = textBox3.Text;
-            comando.Parameters.Add("@dn", MySqlDbType.Date).Value = dateTimePicker1.Value;
+            comando.Parameters.Add("@datanasc", MySqlDbType.Date).Value = dateTimePicker1.Value;
+            comando.Parameters.Add("@formacao", MySqlDbType.VarChar).Value = textBox2.Text;
+            comando.Parameters.Add("@endereco", MySqlDbType.VarChar).Value = textBox3.Text;
+            comando.Parameters.Add("@cep", MySqlDbType.VarChar).Value = textBox4.Text;
+            comando.Parameters.Add("@cidade", MySqlDbType.VarChar).Value = textBox6.Text;
+            comando.Parameters.Add("@senha", MySqlDbType.VarChar).Value = textBox7.Text;
 
             conexao.Open();//abrindo conexão com o banco
 
@@ -102,15 +87,18 @@ namespace ProjetoRelatorio
 
         private void alterar()
         {
-            string sql = "update alunos set nome=@nome,cpf=@cpf,rg=@rg, dn=@dn where codigo='" + textBox5.Text + "'";
+            string sql = "update professor set nome=@nome,datanasc=@datanasc,formacao=@formacao,endereco=@endereco,cep=@cep,cidade=@cidade,senha=@senha where codigo='" + textBox5.Text + "'";
             //enviando uma instrução em sql para a variavel com nome de sql
 
             MySqlConnection conexao = new MySqlConnection(cnsql);
             MySqlCommand comando = new MySqlCommand(sql, conexao);
             comando.Parameters.Add("@nome", MySqlDbType.VarChar).Value = textBox1.Text;
-            comando.Parameters.Add("@cpf", MySqlDbType.VarChar).Value = textBox2.Text;
-            comando.Parameters.Add("@rg", MySqlDbType.VarChar).Value = textBox3.Text;
-            comando.Parameters.Add("@dn", MySqlDbType.Date).Value = dateTimePicker1.Value;
+            comando.Parameters.Add("@datanasc", MySqlDbType.Date).Value = dateTimePicker1.Value;
+            comando.Parameters.Add("@formacao", MySqlDbType.VarChar).Value = textBox2.Text;
+            comando.Parameters.Add("@endereco", MySqlDbType.VarChar).Value = textBox3.Text;
+            comando.Parameters.Add("@cep", MySqlDbType.VarChar).Value = textBox4.Text;
+            comando.Parameters.Add("@cidade", MySqlDbType.VarChar).Value = textBox6.Text;
+            comando.Parameters.Add("@senha", MySqlDbType.VarChar).Value = textBox7.Text;
 
             conexao.Open();//abrindo conexão com o banco
 
@@ -137,7 +125,7 @@ namespace ProjetoRelatorio
 
         private void excluir()
         {
-            string sql = "delete from alunos where codigo = '" + textBox5.Text + "'";
+            string sql = "delete from professor where codigo = '" + textBox5.Text + "'";
             //enviando uma instrução em sql para a variavel com nome de sql
             MySqlConnection conexao = new MySqlConnection(cnsql);
             MySqlCommand comando = new MySqlCommand(sql, conexao);
@@ -158,7 +146,6 @@ namespace ProjetoRelatorio
                 MessageBox.Show("Erro! Registro não Excluido!");
             }
         }
-        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -169,17 +156,11 @@ namespace ProjetoRelatorio
             else if (textBox5.Text == "")
             {
                 inserir();
-            } else {
+            }
+            else
+            {
                 alterar();
             }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            textBox1.Clear();
-            textBox2.Clear();
-            textBox3.Clear();
-            textBox5.Clear();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -187,53 +168,42 @@ namespace ProjetoRelatorio
             consultar();
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear(); 
+            textBox4.Clear();
+            textBox5.Clear();
+            textBox6.Clear();
+            textBox7.Clear();
+        }
+
         private void button4_Click(object sender, EventArgs e)
         {
             excluir();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             textBox1.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[1].Value);
-            textBox2.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value);
-            textBox3.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value);
+            textBox2.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value);
+            textBox3.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[4].Value);
             textBox5.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[0].Value);
-        }
-
-        private void textBox3_Leave(object sender, EventArgs e)
-        {
-            if (textBox3.Text != "" && textBox1.Text == ""){
-                verificacadastroigual();
-            }
-        }
-
-        private void FRNManutAlunos_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (textBox3.Text != "" && textBox1.Text == ""){
-                verificacadastroigual();
-            }
-        }
-
-        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
-        {
+            textBox4.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[5].Value);
+            textBox6.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[6].Value);
+            textBox7.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[7].Value);
         }
 
         private void dataGridView1_CellContextMenuStripChanged(object sender, DataGridViewCellEventArgs e)
         {
             textBox1.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[1].Value);
-            textBox2.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value);
-            textBox3.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value);
+            textBox2.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value);
+            textBox3.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[4].Value);
             textBox5.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[0].Value);
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
+            textBox4.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[5].Value);
+            textBox6.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[6].Value);
+            textBox7.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[7].Value);
         }
     }
 }
