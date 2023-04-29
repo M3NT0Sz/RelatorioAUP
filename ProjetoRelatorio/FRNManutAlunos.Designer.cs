@@ -48,6 +48,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -184,7 +185,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Arial", 20F);
-            this.button3.Location = new System.Drawing.Point(308, 244);
+            this.button3.Location = new System.Drawing.Point(322, 244);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(114, 51);
             this.button3.TabIndex = 11;
@@ -195,7 +196,7 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Arial", 20F);
-            this.button4.Location = new System.Drawing.Point(428, 243);
+            this.button4.Location = new System.Drawing.Point(452, 244);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(114, 51);
             this.button4.TabIndex = 12;
@@ -229,11 +230,23 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(329, 20);
             this.dateTimePicker1.TabIndex = 16;
             // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("Arial", 12F);
+            this.button5.Location = new System.Drawing.Point(572, 244);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(114, 51);
+            this.button5.TabIndex = 17;
+            this.button5.Text = "Verificar Aniversario";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
             // FRNManutAlunos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 569);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label5);
@@ -280,5 +293,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CPF;
         private System.Windows.Forms.DataGridViewTextBoxColumn RG;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataNascimento;
+        private System.Windows.Forms.Button button5;
     }
 }

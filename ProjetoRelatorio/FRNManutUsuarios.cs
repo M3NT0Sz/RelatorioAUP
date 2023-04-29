@@ -55,7 +55,7 @@ namespace ProjetoRelatorio
                 while (leia.Read())//enquanto o leia estiver encontrando dados ele vai exibir as informações no grid, registro por registro
                 {
                     dataGridView1.Rows.Add(Convert.ToString(leia["codigo"]), Convert.ToString(leia["nome"]),
-                    Convert.ToString(leia["email"]), Convert.ToString(leia["senha"]));
+                    Convert.ToString(leia["email"]), Convert.ToString(leia["senha"]), Convert.ToString(leia["dn"]));
                 }
             }
             else
@@ -67,7 +67,7 @@ namespace ProjetoRelatorio
 
         private void inserir()
         {
-            string sql = "insert into usuarios (nome,email,senha) values (@nome,@email,@senha)";
+            string sql = "insert into usuarios (nome,email,senha,dn) values (@nome,@email,@senha,@dn)";
             //enviando uma instrução em sql para a variavel com nome de sql
 
             MySqlConnection conexao = new MySqlConnection(cnsql);
@@ -75,6 +75,7 @@ namespace ProjetoRelatorio
             comando.Parameters.Add("@nome", MySqlDbType.VarChar).Value = textBox1.Text;
             comando.Parameters.Add("@email", MySqlDbType.VarChar).Value = textBox2.Text;
             comando.Parameters.Add("@senha", MySqlDbType.VarChar).Value = textBox3.Text;
+            comando.Parameters.Add("@dn", MySqlDbType.Date).Value = dateTimePicker1.Value;
 
             conexao.Open();//abrindo conexão com o banco
 
@@ -101,7 +102,7 @@ namespace ProjetoRelatorio
 
         private void alterar()
         {
-            string sql = "update usuarios set nome=@nome,email=@email,senha=@senha where codigo='" + textBox5.Text + "'";
+            string sql = "update usuarios set nome=@nome,email=@email,senha=@senha,dn=@dn where codigo='" + textBox5.Text + "'";
             //enviando uma instrução em sql para a variavel com nome de sql
 
             MySqlConnection conexao = new MySqlConnection(cnsql);
@@ -109,6 +110,7 @@ namespace ProjetoRelatorio
             comando.Parameters.Add("@nome", MySqlDbType.VarChar).Value = textBox1.Text;
             comando.Parameters.Add("@email", MySqlDbType.VarChar).Value = textBox2.Text;
             comando.Parameters.Add("@senha", MySqlDbType.VarChar).Value = textBox3.Text;
+            comando.Parameters.Add("@dn", MySqlDbType.Date).Value = dateTimePicker1.Value;
 
             conexao.Open();//abrindo conexão com o banco
 
@@ -221,6 +223,34 @@ namespace ProjetoRelatorio
             textBox2.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value);
             textBox3.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value);
             textBox5.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[0].Value);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            DateTime dataAtual = DateTime.Now;
+            string sql = "select * from usuarios where dn=@dn";
+            MessageBox.Show("Seu aniversario é hoje: " + dataAtual.ToString("dd/MM"));
+            dataGridView1.Rows.Clear();
+            MySqlConnection conexao = new MySqlConnection(cnsql);
+            MySqlCommand comando = new MySqlCommand(sql, conexao);
+            comando.Parameters.Add("@dn", MySqlDbType.Date).Value = dataAtual;
+            conexao.Open();
+
+            MySqlDataReader leia = comando.ExecuteReader();
+
+            if (leia.HasRows)
+            {
+                while (leia.Read())
+                {
+                    dataGridView1.Rows.Add(Convert.ToString(leia["codigo"]), Convert.ToString(leia["nome"]),
+                    Convert.ToString(leia["email"]), Convert.ToString(leia["senha"]), Convert.ToString(leia["dn"]));
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhum Registro Encontrado!");
+            }
+            conexao.Close();
         }
     }
 }

@@ -231,9 +231,32 @@ namespace ProjetoRelatorio
             textBox5.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[0].Value);
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button5_Click_1(object sender, EventArgs e)
         {
+            DateTime dataAtual = DateTime.Now;
+            string sql = "select * from alunos where dn=@dn";
+            MessageBox.Show("Seu aniversario é hoje: " + dataAtual.ToString("dd/MM"));
+            dataGridView1.Rows.Clear();
+            MySqlConnection conexao = new MySqlConnection(cnsql);
+            MySqlCommand comando = new MySqlCommand(sql, conexao);
+            comando.Parameters.Add("@dn", MySqlDbType.Date).Value = dataAtual;
+            conexao.Open();
 
+            MySqlDataReader leia = comando.ExecuteReader();
+
+            if (leia.HasRows)
+            {
+                while (leia.Read())
+                {
+                    dataGridView1.Rows.Add(Convert.ToString(leia["codigo"]), Convert.ToString(leia["nome"]),
+                    Convert.ToString(leia["cpf"]), Convert.ToString(leia["rg"]), Convert.ToString(leia["dn"]));
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhum Registro Encontrado!");
+            }
+            conexao.Close();
         }
     }
 }

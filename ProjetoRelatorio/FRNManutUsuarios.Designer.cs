@@ -45,6 +45,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.Data_Nascimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,7 +74,7 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Arial", 20F);
-            this.button4.Location = new System.Drawing.Point(423, 186);
+            this.button4.Location = new System.Drawing.Point(425, 253);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(114, 51);
             this.button4.TabIndex = 28;
@@ -81,7 +85,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Arial", 20F);
-            this.button3.Location = new System.Drawing.Point(303, 187);
+            this.button3.Location = new System.Drawing.Point(305, 254);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(114, 51);
             this.button3.TabIndex = 27;
@@ -96,8 +100,9 @@
             this.Código,
             this.Nome,
             this.Email,
-            this.Senha});
-            this.dataGridView1.Location = new System.Drawing.Point(10, 244);
+            this.Senha,
+            this.Data_Nascimento});
+            this.dataGridView1.Location = new System.Drawing.Point(12, 311);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(671, 249);
             this.dataGridView1.TabIndex = 26;
@@ -127,7 +132,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Arial", 20F);
-            this.button2.Location = new System.Drawing.Point(139, 187);
+            this.button2.Location = new System.Drawing.Point(141, 254);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(158, 51);
             this.button2.TabIndex = 25;
@@ -138,7 +143,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Arial", 20F);
-            this.button1.Location = new System.Drawing.Point(10, 185);
+            this.button1.Location = new System.Drawing.Point(12, 252);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(123, 53);
             this.button1.TabIndex = 24;
@@ -151,6 +156,7 @@
             this.textBox3.Font = new System.Drawing.Font("Arial", 20F);
             this.textBox3.Location = new System.Drawing.Point(110, 141);
             this.textBox3.Name = "textBox3";
+            this.textBox3.PasswordChar = '*';
             this.textBox3.Size = new System.Drawing.Size(571, 38);
             this.textBox3.TabIndex = 23;
             this.textBox3.Leave += new System.EventHandler(this.textBox3_Leave);
@@ -201,11 +207,47 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Nome:";
             // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("Arial", 12F);
+            this.button5.Location = new System.Drawing.Point(569, 254);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(114, 51);
+            this.button5.TabIndex = 32;
+            this.button5.Text = "Verificar Aniversario";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // Data_Nascimento
+            // 
+            this.Data_Nascimento.HeaderText = "Data Nascimento";
+            this.Data_Nascimento.Name = "Data_Nascimento";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(296, 205);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(329, 20);
+            this.dateTimePicker1.TabIndex = 34;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 20F);
+            this.label4.Location = new System.Drawing.Point(12, 194);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(270, 32);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "Data de Nascimento:";
+            // 
             // FRNManutUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 501);
+            this.ClientSize = new System.Drawing.Size(705, 572);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button4);
@@ -247,5 +289,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn Senha;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Data_Nascimento;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label4;
     }
 }

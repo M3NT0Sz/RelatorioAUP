@@ -205,5 +205,34 @@ namespace ProjetoRelatorio
             textBox6.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[6].Value);
             textBox7.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[7].Value);
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            DateTime dataAtual = DateTime.Now;
+            string sql = "select * from professor where datanasc=@datanasc";
+            MessageBox.Show("Seu aniversario é hoje: " + dataAtual.ToString("dd/MM"));
+            dataGridView1.Rows.Clear();
+            MySqlConnection conexao = new MySqlConnection(cnsql);
+            MySqlCommand comando = new MySqlCommand(sql, conexao);
+            comando.Parameters.Add("@datanasc", MySqlDbType.Date).Value = dataAtual;
+            conexao.Open();
+
+            MySqlDataReader leia = comando.ExecuteReader();
+
+            if (leia.HasRows)
+            {
+                while (leia.Read())
+                {
+                    dataGridView1.Rows.Add(Convert.ToString(leia["codigo"]), Convert.ToString(leia["nome"]),
+                    Convert.ToString(leia["formacao"]), Convert.ToString(leia["endereco"]), Convert.ToString(leia["cep"]), Convert.ToString(leia["cidade"]),
+                    Convert.ToString(leia["senha"]), Convert.ToString(leia["datanasc"]));
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhum Registro Encontrado!");
+            }
+            conexao.Close();
+        }
     }
 }

@@ -34,6 +34,14 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Código = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Formação = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Endereço = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Senha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataNascimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -49,14 +57,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.Código = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Formação = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Endereço = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Senha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataNascimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,6 +127,48 @@
             this.dataGridView1.TabIndex = 26;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dataGridView1.CellContextMenuStripChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContextMenuStripChanged);
+            // 
+            // Código
+            // 
+            this.Código.HeaderText = "Codigo";
+            this.Código.Name = "Código";
+            this.Código.Width = 50;
+            // 
+            // Nome
+            // 
+            this.Nome.HeaderText = "Nome";
+            this.Nome.Name = "Nome";
+            // 
+            // Formação
+            // 
+            this.Formação.HeaderText = "Formação";
+            this.Formação.Name = "Formação";
+            // 
+            // Endereço
+            // 
+            this.Endereço.HeaderText = "Endereço";
+            this.Endereço.Name = "Endereço";
+            // 
+            // CEP
+            // 
+            this.CEP.HeaderText = "CEP";
+            this.CEP.Name = "CEP";
+            this.CEP.Width = 150;
+            // 
+            // Cidade
+            // 
+            this.Cidade.HeaderText = "Cidade";
+            this.Cidade.Name = "Cidade";
+            // 
+            // Senha
+            // 
+            this.Senha.HeaderText = "Senha";
+            this.Senha.Name = "Senha";
+            // 
+            // DataNascimento
+            // 
+            this.DataNascimento.HeaderText = "Data Nascimento";
+            this.DataNascimento.Name = "DataNascimento";
             // 
             // button2
             // 
@@ -268,53 +311,23 @@
             this.label8.TabIndex = 37;
             this.label8.Text = "Senha:";
             // 
-            // Código
+            // button5
             // 
-            this.Código.HeaderText = "Codigo";
-            this.Código.Name = "Código";
-            this.Código.Width = 50;
-            // 
-            // Nome
-            // 
-            this.Nome.HeaderText = "Nome";
-            this.Nome.Name = "Nome";
-            // 
-            // Formação
-            // 
-            this.Formação.HeaderText = "Formação";
-            this.Formação.Name = "Formação";
-            // 
-            // Endereço
-            // 
-            this.Endereço.HeaderText = "Endereço";
-            this.Endereço.Name = "Endereço";
-            // 
-            // CEP
-            // 
-            this.CEP.HeaderText = "CEP";
-            this.CEP.Name = "CEP";
-            this.CEP.Width = 150;
-            // 
-            // Cidade
-            // 
-            this.Cidade.HeaderText = "Cidade";
-            this.Cidade.Name = "Cidade";
-            // 
-            // Senha
-            // 
-            this.Senha.HeaderText = "Senha";
-            this.Senha.Name = "Senha";
-            // 
-            // DataNascimento
-            // 
-            this.DataNascimento.HeaderText = "Data Nascimento";
-            this.DataNascimento.Name = "DataNascimento";
+            this.button5.Font = new System.Drawing.Font("Arial", 12F);
+            this.button5.Location = new System.Drawing.Point(543, 380);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(114, 51);
+            this.button5.TabIndex = 39;
+            this.button5.Text = "Verificar Aniversario";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // FRNManutProfessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(905, 692);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBox6);
@@ -375,5 +388,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn Senha;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataNascimento;
+        private System.Windows.Forms.Button button5;
     }
 }
